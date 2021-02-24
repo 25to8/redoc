@@ -21,12 +21,26 @@ function isWildcardStatusCode(statusCode: string | number): statusCode is string
 }
 
 export function isStatusCode(statusCode: string) {
+  // Check is it WAMP code
+  if (statusCode.includes('.') || statusCode.includes('.error')) {
+    return true
+  }
+
+  // Default http status code checking
   return statusCode === 'default' || isNumeric(statusCode) || isWildcardStatusCode(statusCode);
 }
 
 export function getStatusCodeType(statusCode: string | number, defaultAsError = false): string {
   if (statusCode === 'default') {
     return defaultAsError ? 'error' : 'success';
+  }
+
+  // WAMP procedures can response any string as status code
+  // if there is .error in this string recognize code as error.
+  if (typeof statusCode === 'string' && statusCode.includes('.error')) {
+    return 'error'
+  } else if (typeof statusCode === 'string' && statusCode.includes('.')) {
+    return 'success'
   }
 
   let code = typeof statusCode === 'string' ? parseInt(statusCode, 10) : statusCode;
@@ -56,6 +70,7 @@ const operationNames = {
   patch: true,
   delete: true,
   options: true,
+  call: true,
 };
 
 export function isOperationName(key: string): boolean {
