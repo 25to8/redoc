@@ -64,6 +64,10 @@ export const OperationBadge = styled.span.attrs((props: { type: string }) => ({
   &.hook {
     background-color: ${props => props.theme.colors.primary.main};
   }
+
+  &.call {
+    background-color: ${props => props.theme.colors.http.get};
+  }
 `;
 
 function menuItemActiveBg(depth, { theme }: { theme: ResolvedThemeInterface }): string {
