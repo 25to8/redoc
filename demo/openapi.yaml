@@ -84,7 +84,7 @@ x-tagGroups:
       - pet_model
       - store_model
 paths:
-  /pet:
+  '/io.tabreport.handler.call':
     parameters:
       - name: Accept-Language
         in: header
@@ -101,14 +101,14 @@ paths:
         schema:
           type: integer
           format: int64
-    post:
+    call:
       tags:
         - pet
-      summary: Add a new pet to the store
+      summary: Call to WAMP procedure
       description: Add new pet to the store inventory.
       operationId: addPet
       responses:
-        '405':
+        'io.tabreport.error.id':
           description: Invalid input
       security:
         - petstore_auth:
@@ -177,7 +177,7 @@ paths:
             }
       requestBody:
         $ref: '#/components/requestBodies/Pet'
-  '/pet/{petId}':
+  '/io.tabreport.handler.call.{petId}':
     get:
       tags:
         - pet
@@ -1193,7 +1193,7 @@ x-webhooks:
       summary: New pet
       description: Information about a new pet in the systems
       operationId: newPet
-      tags: 
+      tags:
         - pet
       requestBody:
         content:
