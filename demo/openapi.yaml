@@ -108,6 +108,8 @@ paths:
       description: Add new pet to the store inventory.
       operationId: addPet
       responses:
+        'io.tabreport.handler.status':
+          description: Success
         'io.tabreport.error.id':
           description: Invalid input
       security:
