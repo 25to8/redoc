@@ -22,7 +22,8 @@ export class ParametersGroup extends React.PureComponent<ParametersGroupProps, a
 
     return (
       <div key={place}>
-        <UnderlinedHeader>{place} Parameters</UnderlinedHeader>
+        <UnderlinedHeader>Parameters</UnderlinedHeader>
+        {/*<UnderlinedHeader>{place} Parameters</UnderlinedHeader>*/}
         <PropertiesTable>
           <tbody>
             {mapWithLast(parameters, (field, isLast) => (
